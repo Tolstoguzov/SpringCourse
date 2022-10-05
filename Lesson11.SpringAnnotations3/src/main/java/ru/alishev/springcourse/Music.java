@@ -1,8 +1,9 @@
 package ru.alishev.springcourse;
+import java.util.List;
 
 /**
  * @author Neil Alishev
  */
 public interface Music {
-    String getSong();
+    List<String> getSong();
 }

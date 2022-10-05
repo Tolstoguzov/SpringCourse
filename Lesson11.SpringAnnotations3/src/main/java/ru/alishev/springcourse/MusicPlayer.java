@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * @author Neil Alishev
  */
@@ -19,7 +23,18 @@ public class MusicPlayer {
         this.music2 = music2;
     }
 
-    public String playMusic() {
-        return "Playing: " + music1.getSong() + ", " + music2.getSong();
+    public String playMusic(MusicKind musicKind) {
+        List<String> songList = new ArrayList<>();
+        switch (musicKind) {
+            case CLASSICAL:
+                songList = music2.getSong();
+            break;
+            case ROCK:
+                songList = music1.getSong();
+            break;
+        }
+
+        Random rnd = new Random();
+        return "Playing: " + songList.get(rnd.nextInt(3));
     }
 }
